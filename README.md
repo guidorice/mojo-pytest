@@ -60,22 +60,22 @@ example/
 
 ```text
 $ pytest
-======================================== test session starts =========================================
+=========================== test session starts ============================
 platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-collected 8 items                                                                                    
+collected 8 items                                                          
 
-example/tests/mod_a/test_convert.mojo .                                                        [ 12%]
-example/tests/mod_a/test_convert_different.mojo .                                              [ 25%]
-example/tests/mod_a/test_maths.mojo ....F                                                      [ 87%]
-example/tests/mod_b/test_greet.mojo .                                                          [100%]
+example/tests/mod_a/test_convert.mojo .                              [ 12%]
+example/tests/mod_a/test_convert_different.mojo .                    [ 25%]
+example/tests/mod_a/test_maths.mojo ....F                            [ 87%]
+example/tests/mod_b/test_greet.mojo .                                [100%]
 
-============================================== FAILURES ==============================================
-__________________________________________ # maths more: 42 __________________________________________
+================================= FAILURES =================================
+_____________________________ # maths more: 42 _____________________________
 (<MojoTestItem # maths more: 42>, 'Unhandled exception caught during execution: bad maths: 42')
-====================================== short test summary info =======================================
+========================= short test summary info ==========================
 FAILED example/tests/mod_a/test_maths.mojo::# maths more: 42
-==================================== 1 failed, 7 passed in 0.36s =====================================
+======================= 1 failed, 7 passed in 0.36s ========================
 ```
 
 ## Links
