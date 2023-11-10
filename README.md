@@ -17,6 +17,7 @@ and exit codes.
   - Each `main` function may call arbitrary functions and methods in your Mojo package.
   - Each test item must print a line with it's test name, prefixed with `#` (hashtag, comment) character, ex: `# test name`.
   - Failed tests must raise Mojo `Error`. A helper function for assertions is in `example/tests/util.mojo`.
+- Mojo compiler warnings may optionally be handled as test failures, using the `pytest -W error` mode.
 
 ## Usage
 
@@ -32,8 +33,12 @@ pytest
 # details
 pytest -v
 
+# mojo warnings treated as errors
+pytest -W error
+
 # show all captured stdout
 pytest -s
+
 ```
 
 ## Example Project

@@ -32,6 +32,7 @@ class MojoTestFile(File):
     """
 
     def collect(self):
+        warning_mode = self.config.getoption("-W")
         mojo_src = str(self.path)
         shell_cmd = MOJO_CMD.copy()
         shell_cmd.append(mojo_src)
@@ -41,6 +42,16 @@ class MojoTestFile(File):
         # early-out of there was a mojo parser error (tests cannot be discovered in this case)
         if not process.stdout and process.returncode != 0:
             raise MojoTestException(process.stderr)
+
+        # check stderr for any compile warnings, and create new test item dynamically (just a way to surface to pytest).
+        if process.stderr and warning_mode and "error" in warning_mode:
+            lines = process.stderr.split("\n")
+            lines = [line.strip() for line in lines]
+            for line in lines:
+                if "warning:" in line:
+                    yield MojoTestItem.from_parent(
+                        self, name="warning", spec=dict(stdout=[line], code=1)
+                    )
 
         # extract result stdout into one or more MojoTestItem
         lines = process.stdout.split("\n")
