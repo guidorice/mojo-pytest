@@ -22,7 +22,8 @@ and exit codes.
 ## Usage
 
 1. Install `pytest` >= 7.4 in your Python environment.
-2. Copy the [conftest.py](./conftest.py) into your project root. Or install as pytest plugin with `pip install git+https://github.com/guidorice/mojo-pytest.git`
+2. Install `pytest-mojo` plugin with  `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda
+  [environment.yaml](./environment.yaml).
 3. Use the project layout described in here.
 4. Run `pytest` from your project root. [See also pytest docs](https://docs.pytest.org). Examples:
 
@@ -65,22 +66,24 @@ example/
 
 ```text
 $ pytest
-=========================== test session starts ============================
+======================================== test session starts =========================================
 platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-collected 8 items
+plugins: mojo-0.1.0
+collected 9 items                                                                                    
 
-example/tests/mod_a/test_convert.mojo .                              [ 12%]
-example/tests/mod_a/test_convert_different.mojo .                    [ 25%]
-example/tests/mod_a/test_maths.mojo ....F                            [ 87%]
-example/tests/mod_b/test_greet.mojo .                                [100%]
+example/tests/test_warning.mojo .                                                              [ 11%]
+example/tests/mod_a/test_convert.mojo .                                                        [ 22%]
+example/tests/mod_a/test_convert_different.mojo .                                              [ 33%]
+example/tests/mod_a/test_maths.mojo ....F                                                      [ 88%]
+example/tests/mod_b/test_greet.mojo .                                                          [100%]
 
-================================= FAILURES =================================
-_____________________________ # maths more: 42 _____________________________
+============================================== FAILURES ==============================================
+__________________________________________ # maths more: 42 __________________________________________
 (<MojoTestItem # maths more: 42>, 'Unhandled exception caught during execution: bad maths: 42')
-========================= short test summary info ==========================
+====================================== short test summary info =======================================
 FAILED example/tests/mod_a/test_maths.mojo::# maths more: 42
-======================= 1 failed, 7 passed in 0.36s ========================
+==================================== 1 failed, 8 passed in 0.33s =====================================
 ```
 
 ## Links
