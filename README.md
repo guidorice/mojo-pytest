@@ -22,13 +22,13 @@ and exit codes.
 ## Usage
 
 1. Install `pytest` >= 7.4 in your Python environment.
-2. Copy the [conftest.py](./conftest.py) into your project root.
+2. Copy the [conftest.py](./conftest.py) into your project root. Or install as pytest plugin with `pip install git+https://github.com/guidorice/mojo-pytest.git`
 3. Use the project layout described in here.
 4. Run `pytest` from your project root. [See also pytest docs](https://docs.pytest.org). Examples:
 
 ```shell
 # summary
-pytest 
+pytest
 
 # details
 pytest -v
@@ -68,7 +68,7 @@ $ pytest
 =========================== test session starts ============================
 platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-collected 8 items                                                          
+collected 8 items
 
 example/tests/mod_a/test_convert.mojo .                              [ 12%]
 example/tests/mod_a/test_convert_different.mojo .                    [ 25%]
