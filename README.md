@@ -66,24 +66,24 @@ example/
 
 ```text
 $ pytest
-======================================== test session starts =========================================
+============================= test session starts =============================
 platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
 plugins: mojo-0.1.0
-collected 9 items                                                                                    
+collected 9 items                                                             
 
-example/tests/test_warning.mojo .                                                              [ 11%]
-example/tests/mod_a/test_convert.mojo .                                                        [ 22%]
-example/tests/mod_a/test_convert_different.mojo .                                              [ 33%]
-example/tests/mod_a/test_maths.mojo ....F                                                      [ 88%]
-example/tests/mod_b/test_greet.mojo .                                                          [100%]
+example/tests/test_warning.mojo .                                       [ 11%]
+example/tests/mod_a/test_convert.mojo .                                 [ 22%]
+example/tests/mod_a/test_convert_different.mojo .                       [ 33%]
+example/tests/mod_a/test_maths.mojo ....F                               [ 88%]
+example/tests/mod_b/test_greet.mojo .                                   [100%]
 
-============================================== FAILURES ==============================================
-__________________________________________ # maths more: 42 __________________________________________
+================================== FAILURES ===================================
+______________________________ # maths more: 42 _______________________________
 (<MojoTestItem # maths more: 42>, 'Unhandled exception caught during execution: bad maths: 42')
-====================================== short test summary info =======================================
+=========================== short test summary info ===========================
 FAILED example/tests/mod_a/test_maths.mojo::# maths more: 42
-==================================== 1 failed, 8 passed in 0.33s =====================================
+========================= 1 failed, 8 passed in 0.32s =========================
 ```
 
 ## Links
