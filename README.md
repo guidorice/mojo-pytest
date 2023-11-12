@@ -48,7 +48,6 @@ In the `example/` directory is a Mojo package with a couple of modules. Note: in
 `__init__.mojo` file, not shown here:
 
 ```shell
-conftest.py
 example/
 ├── mod_a
 │   └── impl.mojo
