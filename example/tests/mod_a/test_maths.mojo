@@ -1,5 +1,5 @@
 from example.mod_a.impl import maths
-from example.tests.util import assert_true
+from example.tests.util import MojoTest
 
 
 fn main() raises:
@@ -9,22 +9,22 @@ fn main() raises:
 
 
 fn test_maths() raises:
-    print("# maths")
+    let test = MojoTest("maths")
     let result = maths(8)
     let expect = 64
-    assert_true(result == expect, "maths unexpected result: " + String(result))
+    test.assert_true(result == expect, "maths unexpected result: " + String(result))
 
 
 fn test_maths_more() raises:
-    print("# maths more")
+    let test = MojoTest("maths more")
     let result = maths(9)
     let expect = 81
-    assert_true(result == expect, "maths unexpected result: " + String(result))
+    test.assert_true(result == expect, "maths unexpected result: " + String(result))
 
 
 fn test_maths_lotsmore() raises:
     for i in range(40, 50):
-        print("# maths more: " + String(i))
+        let test = MojoTest("maths more: " + String(i))
         let result = maths(i)
         if result == i:
             raise Error("bad maths: " + String(i))

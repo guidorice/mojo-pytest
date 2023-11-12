@@ -1,9 +1,21 @@
 import testing
 
 
-fn assert_true(cond: Bool, message: String) raises:
+@value
+struct MojoTest:
     """
-    Wraps testing.assert_true, raises Error on assertion failure.
+    A utility struct for testing.
     """
-    if not testing.assert_true(cond, message):
-        raise Error(message)
+
+    var test_name: String
+
+    fn __init__(inout self, test_name: String):
+        self.test_name = test_name
+        print("# " + test_name)
+
+    fn assert_true(self, cond: Bool, message: String) raises:
+        """
+        Wraps testing.assert_true, raises Error on assertion failure.
+        """
+        if not testing.assert_true(cond, message):
+            raise Error(message)
