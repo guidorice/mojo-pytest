@@ -1,0 +1,23 @@
+name: Run Tests
+
+on: ["push"]
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          curl https://get.modular.com | MODULAR_AUTH=${{ secrets.MODULAR_AUTH }} sh -
+          modular auth ${{ secrets.MODULAR_AUTH }}
+          modular install mojo
+          pip install .
+      - name: Test
+        run: |
+          pytest example/tests/mod_b
+          if pytest example/tests/mod_a ; then
+            echo "This tests should fail"
+            exit 1
