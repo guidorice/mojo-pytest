@@ -17,6 +17,8 @@ jobs:
           pip install .
       - name: Test
         run: |
+          export MODULAR_HOME="/home/runner/.modular"
+          export PATH="/home/runner/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
           pytest example/tests/mod_b
           if pytest example/tests/mod_a ; then
             echo "This tests should fail"
