@@ -27,4 +27,4 @@ fn test_maths_lotsmore() raises:
         let test = MojoTest("maths more: " + String(i))
         let result = maths(i)
         if result == i:
-            raise Error("bad maths: " + String(i))
+            test.assert_true(False, "bad maths: " + String(i))
