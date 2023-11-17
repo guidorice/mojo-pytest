@@ -15,8 +15,13 @@ and exit codes.
 - Anywhere in the Mojo package create source files prefixed with `test_`, ex: `test_something.mojo` or `test_xyz.🔥`.
   - Each test file must have a `main` entry point function.
   - Each `main` function may call arbitrary functions and methods in your Mojo package.
-  - Each test item must print a line with it's test name, prefixed with `#` (hashtag, comment) character, ex: `# test name`.
-  - Failed tests should use one of the standard [testing assertions](https://docs.modular.com/mojo/stdlib/testing/testing.html). A helper struct for tests is available in `example/tests/util.mojo`. Tests will also fail if a Mojo `Error` is raised or if an unhandled exception occurs. Note that this will not collect subsequent tests.
+  - Each test item must print a line with it's test name, prefixed with `#` (hashtag, comment) character, ex:
+    `# test name`.
+  - Failed tests should use one of the standard
+    [testing assertions](https://docs.modular.com/mojo/stdlib/testing/testing.html).
+    A helper struct for tests is available in `example/tests/util.mojo`. Tests will also fail if a Mojo `Error` is
+    raised or if an unhandled exception occurs. Note that with unhandled exceptions, subsequent tests will not be
+    collected.
 - Mojo compiler warnings may optionally be handled as test failures, using the `pytest -W error` mode.
 
 ## Usage
@@ -60,29 +65,30 @@ example/
     │   └── test_maths.mojo
     ├── mod_b
     │   └── test_greet.mojo
+    ├── test_warning.mojo
     └── util.mojo
 ```
 
 ```text
 $ pytest
 ============================= test session starts =============================
-platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
+platform darwin -- Python 3.11.6, pytest-7.4.3, pluggy-1.3.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-plugins: mojo-0.1.0
-collected 9 items                                                             
+plugins: mojo-0.1.1
+collected 16 items                                                            
 
-example/tests/test_warning.mojo .                                       [ 11%]
-example/tests/mod_a/test_convert.mojo .                                 [ 22%]
-example/tests/mod_a/test_convert_different.mojo .                       [ 33%]
-example/tests/mod_a/test_maths.mojo ....F                               [ 88%]
+example/tests/test_warning.mojo .                                       [  6%]
+example/tests/mod_a/test_convert.mojo .                                 [ 12%]
+example/tests/mod_a/test_convert_different.mojo .                       [ 18%]
+example/tests/mod_a/test_maths.mojo ....F.......                        [ 93%]
 example/tests/mod_b/test_greet.mojo .                                   [100%]
 
 ================================== FAILURES ===================================
-______________________________ # maths more: 42 _______________________________
-(<MojoTestItem # maths more: 42>, 'Unhandled exception caught during execution: bad maths: 42')
+_______________________________  maths more: 42 _______________________________
+(<MojoTestItem  maths more: 42>, 'ASSERT ERROR: bad maths: 42')
 =========================== short test summary info ===========================
-FAILED example/tests/mod_a/test_maths.mojo::# maths more: 42
-========================= 1 failed, 8 passed in 0.32s =========================
+FAILED example/tests/mod_a/test_maths.mojo:: maths more: 42
+======================== 1 failed, 15 passed in 0.33s =========================
 ```
 
 ## Links
