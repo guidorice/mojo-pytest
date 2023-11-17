@@ -1,3 +1,6 @@
+from example.tests.util import MojoTest
+
+
 fn main() raises:
     test_warning_is_collected()
 
@@ -10,6 +13,6 @@ fn test_warning_is_collected():
 
     This can be captured by running `pytest -W error` (warning -> error mode).
     """
-    print("# compiler warning")
+    let test = MojoTest("compiler warning")
     var x = 100
     print(x)

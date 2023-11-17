@@ -16,7 +16,7 @@ and exit codes.
   - Each test file must have a `main` entry point function.
   - Each `main` function may call arbitrary functions and methods in your Mojo package.
   - Each test item must print a line with it's test name, prefixed with `#` (hashtag, comment) character, ex: `# test name`.
-  - Failed tests must raise Mojo `Error`. A helper function for assertions is in `example/tests/util.mojo`.
+  - Failed tests should use one of the standard [testing assertions](https://docs.modular.com/mojo/stdlib/testing/testing.html). A helper struct for tests is available in `example/tests/util.mojo`. Tests will also fail if a Mojo `Error` is raised or if an unhandled exception occurs. Note that this will not collect subsequent tests.
 - Mojo compiler warnings may optionally be handled as test failures, using the `pytest -W error` mode.
 
 ## Usage

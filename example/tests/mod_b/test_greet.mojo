@@ -1,5 +1,5 @@
 from example.mod_b.impl import greet
-from example.tests.util import assert_true
+from example.tests.util import MojoTest
 
 
 fn main() raises:
@@ -7,7 +7,7 @@ fn main() raises:
 
 
 fn test_greet() raises:
-    print("# greet result")
+    let test = MojoTest("greet result")
     let result = greet("guido")
     let expect = "Hey guido"
-    assert_true(result == expect, "greet unexpected result: " + String(result))
+    test.assert_true(result == expect, "greet unexpected result: " + String(result))

@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from pytest import Package, File, Item
+from pytest import File, Item, Package
 
 MOJO_CMD = ["mojo", "run", "-I", "."]
 """
@@ -17,6 +17,11 @@ Examples of test prefix: `test_something.mojo` or `test_xyz.🔥`
 TEST_ITEM_PREFIX = "#"
 """
 By convention, a comment line (hashtag) signals the test item name.
+"""
+
+TEST_FAILED_PREFIX = "ASSERT ERROR"
+"""
+This is the prefix used in Mojo assertions in the testing module
 """
 
 
@@ -66,7 +71,9 @@ class MojoTestFile(File):
             if line.startswith(TEST_ITEM_PREFIX):
                 if cur_item is not None:
                     yield MojoTestItem.from_parent(
-                        self, name=cur_item, spec=dict(stdout=item_stdout, code=0)
+                        self,
+                        name=cur_item,
+                        spec=dict(stdout=item_stdout, code=0),
                     )
                 cur_item = line
                 item_stdout = []
@@ -83,11 +90,13 @@ class MojoTestFile(File):
 
 class MojoTestItem(Item):
     def __init__(self, *, name: str, parent, spec: dict[str, Any], **kwargs):
-        super().__init__(name, parent, **kwargs)
+        super().__init__(name.removeprefix(TEST_ITEM_PREFIX), parent, **kwargs)
         self.spec = spec
 
     def runtest(self):
-        if self.spec["code"] != 0:
+        if self.spec.get("code") or any(
+            item.startswith(TEST_FAILED_PREFIX) for item in self.spec["stdout"]
+        ):
             raise MojoTestException(self, self.spec["stdout"][-1])
 
     def repr_failure(self, excinfo):
