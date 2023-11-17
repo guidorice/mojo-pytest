@@ -13,8 +13,8 @@ struct MojoTest:
         self.test_name = test_name
         print("# " + test_name)
 
-    fn assert_true(self, cond: Bool, message: String) raises:
+    fn assert_true(self, cond: Bool, message: String):
         """
-        Wraps testing.assert_true, raises Error on assertion failure.
+        Wraps testing.assert_true.
         """
         _ = testing.assert_true(cond, message)
