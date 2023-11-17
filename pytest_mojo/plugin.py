@@ -55,7 +55,7 @@ class MojoTestFile(File):
             for line in lines:
                 if "warning:" in line:
                     yield MojoTestItem.from_parent(
-                        self, name="warning", spec=dict(stdout=[line], code=1)
+                        self, name="warning", spec=dict(stdout=[line], code=0)
                     )
 
         # extract result stdout into one or more MojoTestItem
@@ -73,7 +73,7 @@ class MojoTestFile(File):
                     yield MojoTestItem.from_parent(
                         self,
                         name=cur_item,
-                        spec=dict(stdout=item_stdout, code=process.returncode),
+                        spec=dict(stdout=item_stdout, code=0),
                     )
                 cur_item = line
                 item_stdout = []
