@@ -6,7 +6,7 @@
 
 ## Design
 
-This example project implements a `pytest` hook to discover and run Mojo tests. Although `pytest` does not have any
+This package implements a `pytest` plugin to discover and run Mojo tests. Although `pytest` does not have any
 awareness of Mojo source or package structure, `pytest` is extensible. By following a convention, you can use `pytest`
 to run Mojo tests and view results. In summary, `plugin.py` calls `mojo run` in a sub-process and parses the outputs
 and exit codes.
