@@ -2,6 +2,8 @@
 
 [Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
 
+![run tests workflow](https://github.com/github/docs/actions/workflows/test.yml/badge.svg)
+
 ## Design
 
 This example project implements a `pytest` hook to discover and run Mojo tests. Although `pytest` does not have any
