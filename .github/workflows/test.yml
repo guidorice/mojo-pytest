@@ -20,6 +20,9 @@ jobs:
           export MODULAR_HOME="/home/runner/.modular"
           export PATH="/home/runner/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
+          # check test collection (this count needs to be updated manually when tests are updated)
+          pytest | grep "collected 17 items"
+
           # Tests that do not fail
           pytest example/tests/mod_b
 
@@ -29,14 +32,13 @@ jobs:
             exit 1
           fi
 
-          # Test should fail becuase I am passing options for checking warnings
+          # Test should fail because I am passing options for checking warnings
           rm -rf ~/.modular/.mojo_cache
           if pytest -W error example/tests/test_warning.mojo ; then
             echo "This tests should fail"
             exit 1
           fi
 
-          # Test should not fail becuase I am not checking for warning
+          # Test should not fail because I am not checking for warning
           rm -rf ~/.modular/.mojo_cache
           pytest example/tests/test_warning.mojo
-

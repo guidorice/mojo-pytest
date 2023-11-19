@@ -14,6 +14,11 @@ TEST_PREFIX = "test_"
 Examples of test prefix: `test_something.mojo` or `test_xyz.🔥`
 """
 
+TEST_SUFFIX = "_test"
+"""
+Examples of test suffix: `something_test.mojo` or `xyz_test.🔥`
+"""
+
 TEST_ITEM_PREFIX = "#"
 """
 By convention, a comment line (hashtag) signals the test item name.
@@ -26,7 +31,9 @@ This is the prefix used in Mojo assertions in the testing module
 
 
 def pytest_collect_file(parent: Package, file_path: Path) -> File | None:
-    if file_path.suffix in (".mojo", ".🔥") and file_path.name.startswith(TEST_PREFIX):
+    if file_path.suffix in (".mojo", ".🔥") and (
+        file_path.stem.startswith(TEST_PREFIX) or file_path.stem.endswith(TEST_SUFFIX)
+    ):
         return MojoTestFile.from_parent(parent, path=file_path)
     return None
 
