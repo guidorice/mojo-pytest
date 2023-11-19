@@ -55,7 +55,7 @@ In the `example/` directory is a Mojo package with a couple of modules. Note: in
 `__init__.mojo` file, not shown here:
 
 ```shell
-example/
+example
 ├── mod_a
 │   └── impl.mojo
 ├── mod_b
@@ -67,30 +67,32 @@ example/
     │   └── test_maths.mojo
     ├── mod_b
     │   └── test_greet.mojo
+    ├── suffix_test.mojo
     ├── test_warning.mojo
     └── util.mojo
 ```
 
 ```text
 $ pytest
-============================= test session starts =============================
-platform darwin -- Python 3.11.6, pytest-7.4.3, pluggy-1.3.0
+================================ test session starts ================================
+platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-plugins: mojo-0.1.1
-collected 16 items                                                            
+plugins: mojo-0.2.0
+collected 17 items                                                                  
 
-example/tests/test_warning.mojo .                                       [  6%]
-example/tests/mod_a/test_convert.mojo .                                 [ 12%]
-example/tests/mod_a/test_convert_different.mojo .                       [ 18%]
-example/tests/mod_a/test_maths.mojo ....F.......                        [ 93%]
-example/tests/mod_b/test_greet.mojo .                                   [100%]
+example/tests/suffix_test.mojo .                                              [  5%]
+example/tests/test_warning.mojo .                                             [ 11%]
+example/tests/mod_a/test_convert.mojo .                                       [ 17%]
+example/tests/mod_a/test_convert_different.mojo .                             [ 23%]
+example/tests/mod_a/test_maths.mojo ....F.......                              [ 94%]
+example/tests/mod_b/test_greet.mojo .                                         [100%]
 
-================================== FAILURES ===================================
-_______________________________  maths more: 42 _______________________________
+===================================== FAILURES ======================================
+__________________________________  maths more: 42 __________________________________
 (<MojoTestItem  maths more: 42>, 'ASSERT ERROR: bad maths: 42')
-=========================== short test summary info ===========================
+============================== short test summary info ==============================
 FAILED example/tests/mod_a/test_maths.mojo:: maths more: 42
-======================== 1 failed, 15 passed in 0.33s =========================
+=========================== 1 failed, 16 passed in 0.38s ============================
 ```
 
 ## Links
