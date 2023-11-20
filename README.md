@@ -2,7 +2,7 @@
 
 [Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
 
-![run tests workflow](https://github.com/github/docs/actions/workflows/test.yml/badge.svg)
+[![Run Tests](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml/badge.svg)](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml)
 
 ## Design
 
