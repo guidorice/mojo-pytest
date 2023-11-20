@@ -1,8 +1,8 @@
 # mojo-pytest
 
-[Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
-
 [![Run Tests](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml/badge.svg)](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml)
+
+[Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
 
 ## Design
 
