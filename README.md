@@ -15,7 +15,7 @@ and exit codes.
 
 - Create Mojo package directory in your project root.
 - Anywhere in the Mojo package create source files prefixed with `test_`, ex: `test_something.mojo` or `test_xyz.🔥`.
-  Files suffixed with _test are also collected, ex: something_test.mojo or xyz_test.🔥.
+  Files suffixed with `_test` are also collected, ex: `something_test.mojo` or `xyz_test.🔥`.
   - Each test file must have a `main` entry point function.
   - Each `main` function may call arbitrary functions and methods in your Mojo package.
   - Each test item must print a line with it's test name, prefixed with `#` (hashtag, comment) character, ex:
