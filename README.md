@@ -4,7 +4,7 @@
 
 [Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
 
-Currently only works with Mojo 0.5 . Tracking issue: https://github.com/guidorice/mojo-pytest/issues/10
+⚠️ Currently only works with Mojo 0.5 . Tracking issue: https://github.com/guidorice/mojo-pytest/issues/10
 
 ## Design
 
