@@ -4,6 +4,8 @@
 
 [Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
 
+Currently only works with Mojo 0.5 . Tracking issue: https://github.com/guidorice/mojo-pytest/issues/10
+
 ## Design
 
 This package implements a `pytest` plugin to discover and run Mojo tests. Although `pytest` does not have any
