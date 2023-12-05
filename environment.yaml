@@ -2,7 +2,7 @@ name: mojo-pytest
 channels:
   - defaults
 dependencies:
-  - python=3.11
+  - python=3.12
   - pytest>=7.4.*
   - pip
   - pip:

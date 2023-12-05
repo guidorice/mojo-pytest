@@ -24,7 +24,7 @@ TEST_ITEM_PREFIX = "#"
 By convention, a comment line (hashtag) signals the test item name.
 """
 
-TEST_FAILED_PREFIX = "ASSERT ERROR"
+TEST_FAILED_PREFIX = "AssertionError: "
 """
 This is the prefix used in Mojo assertions in the testing module
 """
