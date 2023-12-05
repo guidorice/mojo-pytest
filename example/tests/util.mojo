@@ -17,4 +17,7 @@ struct MojoTest:
         """
         Wraps testing.assert_true.
         """
-        _ = testing.assert_true(cond, message)
+        try:
+            testing.assert_true(cond, message)
+        except e:
+            print(e)
