@@ -13,7 +13,8 @@ jobs:
         run: |
           curl https://get.modular.com | MODULAR_AUTH=${{ secrets.MODULAR_AUTH }} sh -
           modular auth ${{ secrets.MODULAR_AUTH }}
-          modular install mojo
+          modular install --install-version 0.6.1 mojo
+
           pip install .
       - name: Integration Tests
         run: |
