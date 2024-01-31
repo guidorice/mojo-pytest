@@ -2,7 +2,8 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from pytest import File, Item, Package
+from pytest import File, Item, Package, Parser
+
 
 MOJO_CMD = ["mojo", "run", "-I", "."]
 """
@@ -31,11 +32,20 @@ This is the prefix used in Mojo assertions in the testing module
 
 
 def pytest_collect_file(parent: Package, file_path: Path) -> File | None:
+    """
+    Pytest hook
+    """
     if file_path.suffix in (".mojo", ".🔥") and (
         file_path.stem.startswith(TEST_PREFIX) or file_path.stem.endswith(TEST_SUFFIX)
     ):
         return MojoTestFile.from_parent(parent, path=file_path)
     return None
+
+def pytest_addoption(parser: Parser):
+    """
+    Pytest hook
+    """
+    parser.addoption("--mojo-assertions", action="store_true",  dest="mojo_assertions", help="Passes -D MOJO_ENABLE_ASSERTIONS to mojo.")
 
 
 class MojoTestFile(File):
@@ -45,8 +55,11 @@ class MojoTestFile(File):
 
     def collect(self):
         warning_mode = self.config.getoption("-W")
+        assertions_mode = self.config.getoption("--mojo-assertions")
         mojo_src = str(self.path)
         shell_cmd = MOJO_CMD.copy()
+        if assertions_mode:
+            shell_cmd.extend(["-D", "MOJO_ENABLE_ASSERTIONS"])
         shell_cmd.append(mojo_src)
 
         process = subprocess.run(shell_cmd, capture_output=True, text=True)

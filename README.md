@@ -78,7 +78,7 @@ $ pytest
 ============================= test session starts ==============================
 platform darwin -- Python 3.12.0, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-plugins: mojo-0.6.0
+plugins: mojo-0.7.0
 collected 17 items                                                             
 
 example/tests/suffix_test.mojo .                                         [  5%]
