@@ -26,6 +26,7 @@ and exit codes.
     raised or if an unhandled exception occurs. Note that with unhandled exceptions, subsequent tests will not be
     collected.
 - Mojo compiler warnings may optionally be handled as test failures, using the `pytest -W error` mode.
+- Mojo debug assertion errors may optionally be handled as test failures, using the `pytest --mojo--assertions` mode.
 
 ## Usage
 
