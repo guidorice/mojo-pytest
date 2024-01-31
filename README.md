@@ -45,6 +45,9 @@ pytest -v
 # mojo warnings treated as errors
 pytest -W error
 
+# mojo assertion failures treated as errors (-D MOJO_ENABLE_ASSERTIONS)
+pytest --mojo-assertions
+
 # show all captured stdout
 pytest -s
 
