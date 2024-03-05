@@ -13,7 +13,7 @@ fn test_warning_is_collected():
 
     This can be captured by running `pytest -W error` (warning -> error mode).
     """
-    let test = MojoTest("compiler warning")
+    var test = MojoTest("compiler warning")
     return
-    let x = 100
+    var x = 100
     print(x)

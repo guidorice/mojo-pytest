@@ -9,22 +9,22 @@ fn main() raises:
 
 
 fn test_maths() raises:
-    let test = MojoTest("maths")
-    let result = maths(8)
-    let expect = 64
+    var test = MojoTest("maths")
+    var result = maths(8)
+    var expect = 64
     test.assert_true(result == expect, "maths unexpected result: " + String(result))
 
 
 fn test_maths_more() raises:
-    let test = MojoTest("maths more")
-    let result = maths(9)
-    let expect = 81
+    var test = MojoTest("maths more")
+    var result = maths(9)
+    var expect = 81
     test.assert_true(result == expect, "maths unexpected result: " + String(result))
 
 
 fn test_maths_lotsmore() raises:
     for i in range(40, 50):
-        let test = MojoTest("maths more: " + String(i))
-        let result = maths(i)
+        var test = MojoTest("maths more: " + String(i))
+        var result = maths(i)
         if result == i:
             test.assert_true(False, "bad maths: " + String(i))

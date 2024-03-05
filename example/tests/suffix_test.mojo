@@ -9,5 +9,5 @@ fn main() raises:
 
 
 fn test() raises:
-    let test = MojoTest("test suffix discovery")
+    var test = MojoTest("test suffix discovery")
     test.assert_true(True, "")

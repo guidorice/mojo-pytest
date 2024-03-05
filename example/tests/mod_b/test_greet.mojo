@@ -7,7 +7,7 @@ fn main() raises:
 
 
 fn test_greet() raises:
-    let test = MojoTest("greet result")
-    let result = greet("guido")
-    let expect = "Hey guido"
+    var test = MojoTest("greet result")
+    var result = greet("guido")
+    var expect = "Hey guido"
     test.assert_true(result == expect, "greet unexpected result: " + String(result))
