@@ -26,7 +26,7 @@ and exit codes.
     raised or if an unhandled exception occurs. Note that with unhandled exceptions, subsequent tests will not be
     collected.
 - Mojo compiler warnings may optionally be handled as test failures, using the `pytest -W error` mode.
-- Mojo debug assertion errors may optionally be handled as test failures, using the `pytest --mojo--assertions` mode.
+- Mojo debug assertion errors may optionally be handled as test failures, using the `pytest --mojo-assertions` mode.
 
 ## Usage
 
@@ -82,13 +82,14 @@ $ pytest
 ============================= test session starts ==============================
 platform darwin -- Python 3.12.0, pytest-7.4.0, pluggy-1.0.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-plugins: mojo-0.7.0
-collected 17 items                                                             
+plugins: mojo-24.1.0
+collected 18 items                                                             
 
 example/tests/suffix_test.mojo .                                         [  5%]
-example/tests/test_warning.mojo .                                        [ 11%]
-example/tests/mod_a/test_convert.mojo .                                  [ 17%]
-example/tests/mod_a/test_convert_different.mojo .                        [ 23%]
+example/tests/test_debug_assert.mojo .                                   [ 11%]
+example/tests/test_warning.mojo .                                        [ 16%]
+example/tests/mod_a/test_convert.mojo .                                  [ 22%]
+example/tests/mod_a/test_convert_different.mojo .                        [ 27%]
 example/tests/mod_a/test_maths.mojo ....F.......                         [ 94%]
 example/tests/mod_b/test_greet.mojo .                                    [100%]
 
@@ -97,7 +98,7 @@ _______________________________  maths more: 42 ________________________________
 (<MojoTestItem  maths more: 42>, 'AssertionError: bad maths: 42')
 =========================== short test summary info ============================
 FAILED example/tests/mod_a/test_maths.mojo:: maths more: 42
-========================= 1 failed, 16 passed in 0.46s =========================
+========================= 1 failed, 17 passed in 2.54s =========================
 ```
 
 ## Links

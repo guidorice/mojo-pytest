@@ -7,8 +7,8 @@ fn main() raises:
 
 
 fn test_convert() raises:
-    let test = MojoTest("convert")
-    let x: Int = 42
-    let expect = SIMD[DType.float64](42)
-    let result = convert(x)
+    var test = MojoTest("convert")
+    var x: Int = 42
+    var expect = SIMD[DType.float64](42)
+    var result = convert(x)
     test.assert_true(result == expect, "convert unexpected result: " + String(result))
