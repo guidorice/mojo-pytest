@@ -73,6 +73,7 @@ example
     ├── mod_b
     │   └── test_greet.mojo
     ├── suffix_test.mojo
+    ├── test_debug_assert.mojo
     ├── test_warning.mojo
     └── util.mojo
 ```
