@@ -11,9 +11,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: |
-          curl https://get.modular.com | MODULAR_AUTH=${{ secrets.MODULAR_AUTH }} sh -
+          curl https://get.modular.com | sh -
           modular auth ${{ secrets.MODULAR_AUTH }}
-          modular install --install-version 24.1.1-0ab415f7-release mojo
+          modular install --install-version 24.2.1-2f0dcf11-release mojo
           pip install .
       - name: Integration Tests
         run: |
