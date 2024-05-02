@@ -115,7 +115,7 @@ class MojoTestItem(Item):
 
     def runtest(self):
         if self.spec.get("code") or any(
-            item.startswith(TEST_FAILED_PREFIX) for item in self.spec["stdout"]
+            TEST_FAILED_PREFIX in item for item in self.spec["stdout"]
         ):
             raise MojoTestException(self, self.spec["stdout"][-1])
 
