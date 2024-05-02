@@ -81,9 +81,9 @@ example
 ```text
 $ pytest
 ============================= test session starts ==============================
-platform darwin -- Python 3.12.0, pytest-7.4.0, pluggy-1.0.0
+platform darwin -- Python 3.11.9, pytest-7.4.3, pluggy-1.3.0
 rootdir: /Users/guidorice/mojo/mojo-pytest
-plugins: mojo-24.2.1
+plugins: mojo-24.3.0
 collected 18 items                                                             
 
 example/tests/suffix_test.mojo .                                         [  5%]
@@ -96,10 +96,10 @@ example/tests/mod_b/test_greet.mojo .                                    [100%]
 
 =================================== FAILURES ===================================
 _______________________________  maths more: 42 ________________________________
-(<MojoTestItem  maths more: 42>, 'AssertionError: bad maths: 42')
+(<MojoTestItem  maths more: 42>, 'At /.../mojo-pytest/example/tests/util.mojo:21:32: AssertionError: bad maths: 42')
 =========================== short test summary info ============================
 FAILED example/tests/mod_a/test_maths.mojo:: maths more: 42
-========================= 1 failed, 17 passed in 2.54s =========================
+========================= 1 failed, 17 passed in 1.82s =========================
 ```
 
 ## Links
