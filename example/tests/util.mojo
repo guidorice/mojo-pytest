@@ -16,7 +16,7 @@ struct MojoTest:
     @always_inline("nodebug")
     fn assert_true(self, cond: Bool, message: String):
         """
-        If the condition is false, prints MojoPytestError and call location.
+        If the condition is false, prints AssertionError and call location.
         """
         if not cond:
             var call_loc = __call_location()
