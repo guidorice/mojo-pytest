@@ -1,4 +1,4 @@
-import testing
+from builtin._location import __call_location
 
 
 @value
@@ -13,11 +13,11 @@ struct MojoTest:
         self.test_name = test_name
         print("# " + test_name)
 
+    @always_inline("nodebug")
     fn assert_true(self, cond: Bool, message: String):
         """
-        Wraps testing.assert_true.
+        If the condition is false, prints MojoPytestError and call location.
         """
-        try:
-            testing.assert_true(cond, message)
-        except e:
-            print(e)
+        if not cond:
+            var call_loc = __call_location()
+            print(call_loc.file_name, ":", str(call_loc.line), ":", str(call_loc.col), ": ", "AssertionError: " , message, sep="")

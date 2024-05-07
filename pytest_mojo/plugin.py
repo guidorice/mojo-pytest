@@ -25,9 +25,9 @@ TEST_ITEM_PREFIX = "#"
 By convention, a comment line (hashtag) signals the test item name.
 """
 
-TEST_FAILED_PREFIX = "AssertionError: "
+TEST_FAILED_TAG = "AssertionError: "
 """
-This is the prefix used in Mojo assertions in the testing module
+This is the tag used in Mojo assertions in the util.mojo module.
 """
 
 
@@ -115,7 +115,7 @@ class MojoTestItem(Item):
 
     def runtest(self):
         if self.spec.get("code") or any(
-            TEST_FAILED_PREFIX in item for item in self.spec["stdout"]
+            TEST_FAILED_TAG in item for item in self.spec["stdout"]
         ):
             raise MojoTestException(self, self.spec["stdout"][-1])
 
