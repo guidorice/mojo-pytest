@@ -30,29 +30,37 @@ and exit codes.
 
 ## Usage
 
-1. Install `pytest` >= 7.4 in your Python environment.
-2. Install `pytest-mojo` plugin with  `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda
-  [environment.yaml](./environment.yaml).
-3. Use the project layout described in here.
+1. Install `pytest` >= 7.4 and `pytest-mojo` plugin with `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda [environment.yaml](./environment.yaml) (recommended)
+    ```shell
+    # conda installation example
+    $ conda env create -f environment.yaml -p ./env
+    $ conda activate ./venv
+
+    # now pytest and the mojo plugin are installed
+    $ pytest --version
+    $ pip show pytest-mojo
+    ...
+    ```
+3. Create the project layout and convention described in the [example/](./example/) folder.
 4. Run `pytest` from your project root. [See also pytest docs](https://docs.pytest.org). Examples:
 
-```shell
-# summary
-pytest
+    ```shell
+    # summary
+    pytest
 
-# details
-pytest -v
+    # details
+    pytest -v
 
-# mojo warnings treated as errors
-pytest -W error
+    # mojo warnings treated as errors
+    pytest -W error
 
-# mojo assertion failures treated as errors (-D MOJO_ENABLE_ASSERTIONS)
-pytest --mojo-assertions
+    # mojo assertion failures treated as errors (-D MOJO_ENABLE_ASSERTIONS)
+    pytest --mojo-assertions
 
-# show all captured stdout
-pytest -s
+    # show all captured stdout
+    pytest -s
 
-```
+    ```
 
 ## Example Project
 
@@ -79,7 +87,7 @@ example
 ```
 
 ```text
-$ pytest
+$ pytest example/
 ============================= test session starts ==============================
 platform darwin -- Python 3.11.9, pytest-7.4.3, pluggy-1.3.0
 rootdir: /Users/guidorice/mojo/mojo-pytest

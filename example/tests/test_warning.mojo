@@ -1,7 +1,7 @@
 from example.tests.util import MojoTest
 
 
-fn main() raises:
+def main():
     test_warning_is_collected()
 
 

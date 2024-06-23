@@ -4,7 +4,7 @@ Tests the test suffix form of discovery ex: something_test.mojo
 from example.tests.util import MojoTest
 
 
-fn main() raises:
+def main():
     test()
 
 
