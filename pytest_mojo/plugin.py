@@ -58,7 +58,6 @@ class MojoTestFile(File):
 
         # early-out of there was a mojo parser error (tests cannot be discovered in this case)
         if not process.stdout and process.returncode != 0:
-            print("stderr", process.stderr)
             raise MojoTestException(process.stderr)
 
         # parsed collected tests and generate MojoTestItems for each child
@@ -87,12 +86,15 @@ class MojoTestItem(Item):
             shell_cmd.extend(["-I", mojo_include_path])
         target = self.spec.get("id", None)
 
-        # mojo test apparently needs shell=True to work.
+        # `mojo test`` apparently needs shell=True to work.
         shell_cmd.append(shlex.quote(target))
         shell_cmd_str = " ".join(shell_cmd)
         process = subprocess.run(shell_cmd_str, capture_output=True, text=True, shell=True)
 
         # early-out of there was a mojo parser error (tests cannot be discovered in this case)
+        print("stdout:", process.stdout)
+        print("stderr:", process.stderr)
+
         if not process.stdout and process.returncode != 0:
             raise MojoTestException(process.stderr)
 
