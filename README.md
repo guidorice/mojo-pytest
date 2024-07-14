@@ -47,7 +47,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
     ================================ test session starts ================================
     platform darwin -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
-    rootdir: /Users/guidorice/mojo/mojo-pytest
+    rootdir: /Users/you/project
     plugins: mojo-24.4.0
     collected 6 items                                                                   
 
