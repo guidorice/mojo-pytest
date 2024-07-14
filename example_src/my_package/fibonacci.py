@@ -9,7 +9,3 @@ def fibonacci(n: int) -> int:
     for _ in range(2, n + 1):
         a, b = b, a + b
     return b
-
-
-def main():
-    print(fibonacci(10))
