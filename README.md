@@ -2,19 +2,18 @@
 
 [![Run Tests](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml/badge.svg)](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml)
 
-[mojo🔥](https://github.com/modularml/mojo) test runner plugin for [pytest](https://docs.pytest.org). Great for your
-mixed Python and mojo codebases! 
-
+[Mojo🔥](https://github.com/modularml/mojo) language test runner plugin for [pytest](https://docs.pytest.org). Try it for
+your mixed Python and Mojo codebases!
 
 ## Design
 
-This package implements a `pytest` plugin to discover and run mojo tests, alongside
-your Python tests. Although `pytest` does not have any awareness of mojo source or package structure, `pytest` is
-extensible. In summary, `plugin.py` calls `mojo test` in a sub-process and parses the outputs and exit codes.
+This package implements a `pytest` plugin to discover and run mojo tests, alongside your Python tests. Although `pytest`
+does not have any awareness of Mojo source or package structure, `pytest` is extensible. In summary, `plugin.py` calls
+`mojo test` in a sub-process and parses the outputs and exit codes.
 
 ## Usage
 
-1. Create your mojo tests according to the manual: https://docs.modular.com/mojo/tools/testing .
+1. Create your Mojo tests according to the manual: https://docs.modular.com/mojo/tools/testing .
 
 2. Install `pytest` and `pytest-mojo` plugin into your project
     with `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda
@@ -24,7 +23,7 @@ extensible. In summary, `plugin.py` calls `mojo test` in a sub-process and parse
     $ conda env create -f environment.yaml -p ./env
     $ conda activate ./env
 
-    # verify pytest and the mojo plugin are installed
+    # verify pytest and the Mojo plugin are installed
     $ pytest --version
     $ pip show pytest-mojo
     ...
@@ -32,17 +31,18 @@ extensible. In summary, `plugin.py` calls `mojo test` in a sub-process and parse
 
 3. See the [example_src/](./example_src/) folder for one possible filesystem layout:
     - `example_src/` has it's tests in the `example_test/` folder.
-    - Remember that the [mojo manual](https://docs.modular.com/mojo/tools/testing) explains
-    that tests are allowed to be in the same folder as mojo code, or different folder, or even as mojo code in
+    - Remember that the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
+    that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
     docstrings! So this example project is just one possibility.
-4. mojo tests and Python tests are all run via `pytest`! Use the plugin's `--mojo-include` option to discover your
-   mojo packages. (Note, under the hoold this mojo's `-I` option).
+4. Mojo tests and Python tests are all run via `pytest`! Use the plugin's `--mojo-include` option to include your
+   Mojo packages.
+
     ```shell
-    # this example_src/ contains a python package which is also called from mojo,
+    # this example_src/ contains a python package which is also called from Mojo,
     # so we must add it using PYTHONPATH. Please note that the full path may be required!
     $ export PYTHONPATH=/Users/you/project/example_src/
 
-    # Use the plugin's --mojo-include option to tell mojo where to find the mojo package `my_package` 
+    # Use the plugin's --mojo-include option to tell mojo where to find `my_package` 
     $ pytest --mojo-include example_src/ example_tests/
 
     ================================ test session starts ================================
@@ -59,12 +59,13 @@ extensible. In summary, `plugin.py` calls `mojo test` in a sub-process and parse
 
     ================================= 6 passed in 6.47s =================================
     ```
-    👆🏽Notice how your Python tests are run alongside your mojo tests.
 
-5. mojo packages are supported with `--mojo-include` (for example, could be used in a CI/CD script):
+    👆🏽 Notice how your Python tests are run alongside your mojo tests.
+
+5. Mojo binary packages are also supported with `--mojo-include`. For example, this could be used in a CI/CD script:
 
 ```shell
-    $ mojo package example_src/my_package -o build/my_package.mojopkg  # note: 📦 works same as .mojopkg
+    $ mojo package example_src/my_package -o build/my_package.mojopkg  # or .📦
     $ pytest --mojo-include build/ example_tests/
     ... 
     ... (same pytest output as above)
@@ -75,30 +76,31 @@ See also, the [pytest docs](https://docs.pytest.org) for many more options.
 
 ## Example Project
 
-In the `example_src/` directory is a mojo package with a couple of modules. There is also a python module,
-which we call in two ways (from pytest, and from mojo). Here is an overview:
+In the `example_src/` directory is a Mojo package with a couple of modules. There is also a python module, which we call
+in two ways (from `pytest`, and from Mojo). Here is an overview:
 
 ```shell
 example_src
 ├── main.mojo                    # main entry point. run with `mojo example_src/main.mojo`
 └── my_package
-    ├── __init__.mojo            # this is both mojo package, and a python package.
+    ├── __init__.mojo            # this is both Mojo package, and a Python package.
     ├── __init__.py
-    ├── fibonacci.mojo           # mojo implementation
-    ├── fibonacci.py             # python implementation
+    ├── fibonacci.mojo           # Mojo implementation
+    ├── fibonacci.py             # Python implementation
     └── random_tensor.mojo       # random tensor stuff
 
 example_tests
 └── my_package
     ├── my_test.mojo             # files can be named xxx_test as well as test_xxx.
-    ├── test_fibonacci.mojo      # tests the mojo impl and the python impl.
-    ├── test_fibonacci.py        # tests the python impl (pure python).
+    ├── test_fibonacci.mojo      # tests the Mojo impl and the python impl.
+    ├── test_fibonacci.py        # tests the Python impl (pure Python).
     ├── test_fire.🔥             # tests are collected for fire extension too.
-    └── test_random_tensor.mojo  # tests the mojo impl.
+    └── test_random_tensor.mojo  # tests the Mojo impl.
 ```
 
 ## Links
 
-- Writing tests in mojo: https://docs.modular.com/mojo/tools/testing .
-- Non-python tests in pytest:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
+- Writing tests in Mojo: https://docs.modular.com/mojo/tools/testing .
+- Non-python tests in `pytest`:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
 - C test runner: https://pytest-c-testrunner.readthedocs.io/
+- Pytest docs: https://docs.pytest.org
