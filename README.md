@@ -80,9 +80,9 @@ which we call in two ways (from pytest, and from mojo). Here is an overview:
 
 ```shell
 example_src
-├── main.mojo                   # main entry point. run with `mojo example_src/main.mojo`
+├── main.mojo                    # main entry point. run with `mojo example_src/main.mojo`
 └── my_package
-    ├── __init__.mojo           # this is both mojo package, and a python package.
+    ├── __init__.mojo            # this is both mojo package, and a python package.
     ├── __init__.py
     ├── fibonacci.mojo           # mojo implementation
     ├── fibonacci.py             # python implementation
