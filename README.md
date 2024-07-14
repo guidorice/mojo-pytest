@@ -29,16 +29,16 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     ...
     ```
 
-3. See the [example_src/](./example_src/) folder for one possible filesystem layout:
-    - `example_src/` has it's tests in the `example_test/` folder.
-    - Remember that the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
+3. See the example project for one possible filesystem layout:
+    - `example_src/` has it's tests in the `example_tests/` folder.
+    - Remember the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
     that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
     docstrings! So this example project is just one possibility.
 4. Mojo tests and Python tests are all run via `pytest`! Use the plugin's `--mojo-include` option to include your
    Mojo packages.
 
     ```shell
-    # this example_src/ contains a python package which is also called from Mojo,
+    # this example_src/ contains a Python package which is also called from Mojo,
     # so we must add it using PYTHONPATH. Please note that the full path may be required!
     $ export PYTHONPATH=/Users/you/project/example_src/
 
@@ -76,7 +76,7 @@ See also, the [pytest docs](https://docs.pytest.org) for many more options.
 
 ## Example Project
 
-In the `example_src/` directory is a Mojo package with a couple of modules. There is also a python module, which we call
+In the `example_src/` directory is a Mojo package with a couple of modules. There is also a Python module, which we call
 in two ways (from `pytest`, and from Mojo). Here is an overview:
 
 ```shell
@@ -92,7 +92,7 @@ example_src
 example_tests
 └── my_package
     ├── my_test.mojo             # files can be named xxx_test as well as test_xxx.
-    ├── test_fibonacci.mojo      # tests the Mojo impl and the python impl.
+    ├── test_fibonacci.mojo      # tests the Mojo impl and the Python impl.
     ├── test_fibonacci.py        # tests the Python impl (pure Python).
     ├── test_fire.🔥             # tests are collected for fire extension too.
     └── test_random_tensor.mojo  # tests the Mojo impl.
@@ -101,6 +101,6 @@ example_tests
 ## Links
 
 - Writing tests in Mojo: https://docs.modular.com/mojo/tools/testing .
-- Non-python tests in `pytest`:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
+- Non-Python tests in `pytest`:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
 - C test runner: https://pytest-c-testrunner.readthedocs.io/
 - Pytest docs: https://docs.pytest.org
