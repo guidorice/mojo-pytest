@@ -2,107 +2,105 @@
 
 [![Run Tests](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml/badge.svg)](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml)
 
-[Mojo🔥](https://github.com/modularml/mojo)  test runner using [pytest](https://docs.pytest.org).
+[Mojo🔥](https://github.com/modularml/mojo) language test runner plugin for [pytest](https://docs.pytest.org). Try it for
+your mixed Python and Mojo codebases!
 
 ## Design
 
-This package implements a `pytest` plugin to discover and run Mojo tests. Although `pytest` does not have any
-awareness of Mojo source or package structure, `pytest` is extensible. By following a convention, you can use `pytest`
-to run Mojo tests and view results. In summary, `plugin.py` calls `mojo run` in a sub-process and parses the outputs
-and exit codes.
-
-## Convention
-
-- Create Mojo package directory in your project root.
-- Anywhere in the Mojo package create source files prefixed with `test_`, ex: `test_something.mojo` or `test_xyz.🔥`.
-  Files suffixed with `_test` are also collected, ex: `something_test.mojo` or `xyz_test.🔥`.
-  - Each test file must have a `main` entry point function.
-  - Each `main` function may call arbitrary functions and methods in your Mojo package.
-  - Each test item must print a line with it's test name, prefixed with `#` (hashtag, comment) character, ex:
-    `# test name`.
-  - Failed tests should use one of the standard
-    [testing assertions](https://docs.modular.com/mojo/stdlib/testing/testing.html).
-    A helper struct for tests is available in `example/tests/util.mojo`. Tests will also fail if a Mojo `Error` is
-    raised or if an unhandled exception occurs. Note that with unhandled exceptions, subsequent tests will not be
-    collected.
-- Mojo compiler warnings may optionally be handled as test failures, using the `pytest -W error` mode.
-- Mojo debug assertion errors may optionally be handled as test failures, using the `pytest --mojo-assertions` mode.
+This package implements a `pytest` plugin to discover and run mojo tests, alongside your Python tests. Although `pytest`
+does not have any awareness of Mojo source or package structure, `pytest` is extensible. In summary, `plugin.py` calls
+`mojo test` in a sub-process and parses the outputs and exit codes.
 
 ## Usage
 
-1. Install `pytest` >= 7.4 in your Python environment.
-2. Install `pytest-mojo` plugin with  `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda
-  [environment.yaml](./environment.yaml).
-3. Use the project layout described in here.
-4. Run `pytest` from your project root. [See also pytest docs](https://docs.pytest.org). Examples:
+1. Create your Mojo tests according to the manual: https://docs.modular.com/mojo/tools/testing .
+
+2. Install `pytest` and `pytest-mojo` plugin into your project
+    with `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda
+    [environment.yaml](./environment.yaml) (recommended)
+    ```shell
+    # conda installation example
+    $ conda env create -f environment.yaml -p ./env
+    $ conda activate ./env
+
+    # verify pytest and the Mojo plugin are installed
+    $ pytest --version
+    $ pip show pytest-mojo
+    ...
+    ```
+
+3. See the [example_src/](./example_src/) folder for one possible filesystem layout:
+    - `example_src/` has it's tests in the `example_test/` folder.
+    - Remember that the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
+    that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
+    docstrings! So this example project is just one possibility.
+4. Mojo tests and Python tests are all run via `pytest`! Use the plugin's `--mojo-include` option to include your
+   Mojo packages.
+
+    ```shell
+    # this example_src/ contains a python package which is also called from Mojo,
+    # so we must add it using PYTHONPATH. Please note that the full path may be required!
+    $ export PYTHONPATH=/Users/you/project/example_src/
+
+    # Use the plugin's --mojo-include option to tell mojo where to find `my_package` 
+    $ pytest --mojo-include example_src/ example_tests/
+
+    ================================ test session starts ================================
+    platform darwin -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+    rootdir: /Users/guidorice/mojo/mojo-pytest
+    plugins: mojo-24.4.0
+    collected 6 items                                                                   
+
+    example_tests/my_package/my_test.mojo .                                       [ 16%]
+    example_tests/my_package/test_fibonacci.mojo ..                               [ 50%]
+    example_tests/my_package/test_fibonacci.py .                                  [ 66%]
+    example_tests/my_package/test_fire.🔥 .                                       [ 83%]
+    example_tests/my_package/test_random_tensor.mojo .                            [100%]
+
+    ================================= 6 passed in 6.47s =================================
+    ```
+
+    👆🏽 Notice how your Python tests are run alongside your mojo tests.
+
+5. Mojo binary packages are also supported with `--mojo-include`. For example, this could be used in a CI/CD script:
 
 ```shell
-# summary
-pytest
-
-# details
-pytest -v
-
-# mojo warnings treated as errors
-pytest -W error
-
-# mojo assertion failures treated as errors (-D MOJO_ENABLE_ASSERTIONS)
-pytest --mojo-assertions
-
-# show all captured stdout
-pytest -s
-
+    $ mojo package example_src/my_package -o build/my_package.mojopkg  # or .📦
+    $ pytest --mojo-include build/ example_tests/
+    ... 
+    ... (same pytest output as above)
+    ...
 ```
+
+See also, the [pytest docs](https://docs.pytest.org) for many more options.
 
 ## Example Project
 
-In the `example/` directory is a Mojo package with a couple of modules. Note: in every subdirectory also exists an
-`__init__.mojo` file, not shown here:
+In the `example_src/` directory is a Mojo package with a couple of modules. There is also a python module, which we call
+in two ways (from `pytest`, and from Mojo). Here is an overview:
 
 ```shell
-example
-├── mod_a
-│   └── impl.mojo
-├── mod_b
-│   └── impl.mojo
-└── tests
-    ├── mod_a
-    │   ├── test_convert.mojo
-    │   ├── test_convert_different.mojo
-    │   └── test_maths.mojo
-    ├── mod_b
-    │   └── test_greet.mojo
-    ├── suffix_test.mojo
-    ├── test_debug_assert.mojo
-    ├── test_warning.mojo
-    └── util.mojo
-```
+example_src
+├── main.mojo                    # main entry point. run with `mojo example_src/main.mojo`
+└── my_package
+    ├── __init__.mojo            # this is both Mojo package, and a Python package.
+    ├── __init__.py
+    ├── fibonacci.mojo           # Mojo implementation
+    ├── fibonacci.py             # Python implementation
+    └── random_tensor.mojo       # random tensor stuff
 
-```text
-$ pytest
-============================= test session starts ==============================
-platform darwin -- Python 3.11.9, pytest-7.4.3, pluggy-1.3.0
-rootdir: /Users/guidorice/mojo/mojo-pytest
-plugins: mojo-24.3.1
-collected 18 items                                                             
-
-example/tests/suffix_test.mojo .                                         [  5%]
-example/tests/test_debug_assert.mojo .                                   [ 11%]
-example/tests/test_warning.mojo .                                        [ 16%]
-example/tests/mod_a/test_convert.mojo .                                  [ 22%]
-example/tests/mod_a/test_convert_different.mojo .                        [ 27%]
-example/tests/mod_a/test_maths.mojo ....F.......                         [ 94%]
-example/tests/mod_b/test_greet.mojo .                                    [100%]
-
-=================================== FAILURES ===================================
-_______________________________  maths more: 42 ________________________________
-(<MojoTestItem  maths more: 42>, '/.../mojo-pytest/example/tests/mod_a/test_maths.mojo:30:29: AssertionError: bad maths: 42')
-=========================== short test summary info ============================
-FAILED example/tests/mod_a/test_maths.mojo:: maths more: 42
-========================= 1 failed, 17 passed in 1.90s =========================
+example_tests
+└── my_package
+    ├── my_test.mojo             # files can be named xxx_test as well as test_xxx.
+    ├── test_fibonacci.mojo      # tests the Mojo impl and the python impl.
+    ├── test_fibonacci.py        # tests the Python impl (pure Python).
+    ├── test_fire.🔥             # tests are collected for fire extension too.
+    └── test_random_tensor.mojo  # tests the Mojo impl.
 ```
 
 ## Links
 
-- Non-python tests in pytest:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
+- Writing tests in Mojo: https://docs.modular.com/mojo/tools/testing .
+- Non-python tests in `pytest`:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
 - C test runner: https://pytest-c-testrunner.readthedocs.io/
+- Pytest docs: https://docs.pytest.org

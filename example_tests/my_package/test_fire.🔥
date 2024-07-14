@@ -1,0 +1,7 @@
+from testing import assert_true
+
+def test_emoji():
+    """
+    Testing the discovery of this file extension.
+    """
+    assert_true(True)

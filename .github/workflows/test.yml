@@ -13,10 +13,11 @@ jobs:
         run: |
           curl https://get.modular.com | sh -
           modular auth ${{ secrets.MODULAR_AUTH }}
-          modular install --install-version 24.3.0 mojo
+          modular install --install-version 24.4.0 mojo
           pip install .
       - name: Integration Tests
         run: |
           export MODULAR_HOME="/home/runner/.modular"
           export PATH="/home/runner/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+          export PYTHONPATH=/home/runner/work/mojo-pytest/mojo-pytest/example_src
           make test
