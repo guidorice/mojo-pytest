@@ -65,11 +65,11 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 5. Mojo binary packages are also supported with `--mojo-include`. For example, this could be used in a CI/CD script:
 
     ```shell
-        $ mojo package example_src/my_package -o build/my_package.mojopkg  # or .📦
-        $ pytest --mojo-include build/ example_tests/
-        ... 
-        ... (same pytest output as above)
-        ...
+    $ mojo package example_src/my_package -o build/my_package.mojopkg  # or .📦
+    $ pytest --mojo-include build/ example_tests/
+    ... 
+    ... (same pytest output as above)
+    ...
     ```
 
 See also, the [pytest docs](https://docs.pytest.org) for many more options.
