@@ -7,7 +7,7 @@ your mixed Python and Mojo codebases!
 
 ## Design
 
-This package implements a `pytest` plugin to discover and run mojo tests, alongside your Python tests. Although `pytest`
+This package implements a `pytest` plugin to discover and run Mojo tests, alongside your Python tests. Although `pytest`
 does not have any awareness of Mojo source or package structure, `pytest` is extensible. In summary, `plugin.py` calls
 `mojo test` in a sub-process and parses the outputs and exit codes.
 
