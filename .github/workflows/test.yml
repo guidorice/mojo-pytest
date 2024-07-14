@@ -19,5 +19,5 @@ jobs:
         run: |
           export MODULAR_HOME="/home/runner/.modular"
           export PATH="/home/runner/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
-          export PYTHONPATH=/home/runner/example_src
+          export PYTHONPATH=/home/runner/work/mojo-pytest/mojo-pytest/example_src
           make test
