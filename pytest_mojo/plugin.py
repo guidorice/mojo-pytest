@@ -47,7 +47,6 @@ class MojoTestFile(File):
     """
 
     def collect(self):
-        warning_mode = self.config.getoption("-W")
         mojo_include_path = self.config.getoption("--mojo-include")
         mojo_src = str(self.path)
         shell_cmd = MOJO_TEST.copy()
@@ -59,17 +58,8 @@ class MojoTestFile(File):
 
         # early-out of there was a mojo parser error (tests cannot be discovered in this case)
         if not process.stdout and process.returncode != 0:
+            print("stderr", process.stderr)
             raise MojoTestException(process.stderr)
-
-        # check stderr for any compile warnings, and create new test item dynamically (just a way to surface to pytest).
-        if process.stderr and warning_mode and "error" in warning_mode:
-            lines = process.stderr.split("\n")
-            lines = [line.strip() for line in lines]
-            for line in lines:
-                if "warning:" in line:
-                    yield MojoTestItem.from_parent(
-                        self, name="warning", spec=dict(stdout=[line], code=1),
-                    )
 
         # parsed collected tests and generate MojoTestItems for each child
         report = json.loads(process.stdout)
@@ -106,14 +96,11 @@ class MojoTestItem(Item):
         if not process.stdout and process.returncode != 0:
             raise MojoTestException(process.stderr)
 
-        if "Total Discovered Tests: 0" in process.stdout:
-            raise MojoTestException(process.stdout)
-
         report = json.loads(process.stdout)
         kind = report.get("kind", None)
         error = report.get("error", None)
         if error:
-            raise MojoTestException(kind + ":" + report.get("stdOut", None))
+            raise MojoTestException(kind + ":"+ report.get("stdErr") + report.get("stdOut"))
 
     def repr_failure(self, excinfo):
         return str(excinfo)
