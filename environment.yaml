@@ -6,4 +6,4 @@ dependencies:
   - pytest>=8.2.*
   - pip
   - pip:
-     - git+https://github.com/guidorice/mojo-pytest.git
+    - git+https://github.com/guidorice/mojo-pytest.git
