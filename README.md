@@ -15,13 +15,17 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
 1. Create your Mojo tests according to the manual: https://docs.modular.com/mojo/tools/testing .
 
-2. Install `pytest` and `pytest-mojo` plugin into your project
-    with `pip install git+https://github.com/guidorice/mojo-pytest.git`, or with the Conda
-    [environment.yaml](./environment.yaml) (recommended)
+2. Install `pytest` and `pytest-mojo` plugin using the [pyproject](./pyproject.toml) file:
+
     ```shell
-    # conda installation example
-    $ conda env create -f environment.yaml -p ./env
-    $ conda activate ./env
+    # (optional) create and activate a virtualenv
+    python3 -m venv venv/
+    source venv/bin/activate
+
+    # install from github
+    pip install git+https://github.com/guidorice/mojo-pytest.git
+    # or install from cloned repository
+    pip install .
 
     # verify pytest and the Mojo plugin are installed
     $ pytest --version

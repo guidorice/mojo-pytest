@@ -1,9 +1,0 @@
-name: mojo-pytest
-channels:
-  - defaults
-dependencies:
-  - python=3.12.*
-  - pip
-  - pip:
-    - pytest>=8.2.*
-    - git+https://github.com/guidorice/mojo-pytest.git
