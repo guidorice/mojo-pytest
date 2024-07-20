@@ -24,13 +24,13 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
     # install from github
     pip install git+https://github.com/guidorice/mojo-pytest.git
+
     # or install from cloned repository
     pip install .
 
     # verify pytest and the Mojo plugin are installed
-    $ pytest --version
-    $ pip show pytest-mojo
-    ...
+    pytest --version
+    pip show pytest-mojo
     ```
 
 3. See the example project for one possible filesystem layout:
