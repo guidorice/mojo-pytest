@@ -39,7 +39,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     Summary: it is a requirement is to have a `python` and `mojo` sharing the same runtime and packages and
     [conda](https://docs.anaconda.com/miniconda/) is the easiest way to accomplish that.
 
-3. Create some tests. See the example project for one possible filesystem layout:
+3. See the example project for one possible filesystem layout:
     - `example_src/` has it's tests in the `example_tests/` folder.
     - Remember the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
     that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
