@@ -15,25 +15,31 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
 1. Create your Mojo tests according to the manual: https://docs.modular.com/mojo/tools/testing .
 
-2. Install `pytest` and `pytest-mojo` plugin using the [pyproject](./pyproject.toml) file:
+2. Install `mojo`, `python`, `pytest` and `pytest-mojo` plugin using the [conda](https://docs.anaconda.com/miniconda/)
+ [environment.yml](environment.yml) file. This can alternatively be done with the [magic](https://docs.modular.com/magic/)
+ package manager, but [conda](https://docs.anaconda.com/miniconda/) is easier for this use case.
 
     ```shell
-    # (optional) create and activate a virtualenv
-    python3 -m venv venv/
-    source venv/bin/activate
+    # use conda to install mojo, python, and the pytest-mojo plugin.
+    $ conda env -n foo-project create -f environment.yml
 
-    # install from github
-    pip install git+https://github.com/guidorice/mojo-pytest.git
-
-    # or install from cloned repository
-    pip install .
-
-    # verify pytest and the Mojo plugin are installed
-    pytest --version
-    pip show pytest-mojo
+    # verify environment
+    $ conda activate foo-project
+    $ mojo --version
+    mojo 24.5.0 (e8aacb95)
+    $ python --version
+    Python 3.12.6
+    $ conda list pytest
+    ...
+    pytest                    8.3.3              pyhd8ed1ab_0    conda-forge
+    pytest-mojo               24.5                     pypi_0    pypi
+    pytest-xdist              3.6.1              pyhd8ed1ab_0    conda-forge
     ```
 
-3. See the example project for one possible filesystem layout:
+    Summary: it is a requirement is to have a `python` and `mojo` sharing the same runtime and packages and
+    [conda](https://docs.anaconda.com/miniconda/) is the easiest way to accomplish that.
+
+3. Create some tests. See the example project for one possible filesystem layout:
     - `example_src/` has it's tests in the `example_tests/` folder.
     - Remember the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
     that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
@@ -50,9 +56,10 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     $ pytest --mojo-include example_src/ example_tests/
 
     ================================ test session starts ================================
-    platform darwin -- Python 3.11.9, pytest-8.2.2, pluggy-1.5.0
-    rootdir: /Users/you/project
-    plugins: mojo-24.4.0
+    platform darwin -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0
+    rootdir: /Users/guidorice/mojo/mojo-pytest
+    configfile: pyproject.toml
+    plugins: mojo-24.5
     collected 6 items                                                                   
 
     example_tests/my_package/my_test.mojo .                                       [ 16%]
@@ -61,7 +68,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     example_tests/my_package/test_fire.🔥 .                                       [ 83%]
     example_tests/my_package/test_random_tensor.mojo .                            [100%]
 
-    ================================= 6 passed in 6.47s =================================
+    ================================ 6 passed in 13.55s =================================
     ```
 
     👆🏽 Notice how your Python tests are run alongside your mojo tests.
@@ -76,7 +83,6 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     ...
     ```
 
-See also, the [pytest docs](https://docs.pytest.org) for many more options.
 
 ## Example Project
 
@@ -104,7 +110,9 @@ example_tests
 
 ## Links
 
-- Writing tests in Mojo: https://docs.modular.com/mojo/tools/testing .
+- If you experience slowness, see this [tip about using multiprocessing]( https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip)
+with pytest.
+- Writing tests in Mojo: https://docs.modular.com/mojo/tools/testing
 - Non-Python tests in `pytest`:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
 - C test runner: https://pytest-c-testrunner.readthedocs.io/
 - Pytest docs: https://docs.pytest.org
