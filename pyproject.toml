@@ -1,22 +1,16 @@
-[tool.poetry]
+[project]
 name = "pytest-mojo"
-version = "24.4.0"
+version = "v24.5"
 description = "Mojo🔥 language test runner plugin for pytest. (aka pytest-mojo)"
-authors = ["Alex G Rice <alex@ricegeo.dev>"]
-license = "MIT"
-readme = "README.md"
-repository = "https://github.com/guidorice/mojo-pytest"
-packages = [
-    { include = "pytest_mojo" },
-]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-pytest = "*"
-
+authors = [{name = "Alex G Rice", email = "alex@ricegeo.dev"}]
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry.plugins.pytest11]
-mojo = "pytest_mojo.plugin"
+[tool.setuptools]
+packages = ["pytest_mojo"]
+
+[project.entry-points.pytest11]
+"pytest_mojo" = "pytest_mojo.plugin"

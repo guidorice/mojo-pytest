@@ -1,0 +1,20 @@
+name: pytest-mojo
+channels:
+  - https://conda.modular.com/max
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  # modular MAX installs mojo as well
+  - max>=24.5
+  - pytest>=7.4
+  # python-xdist is optional: https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip
+  - pytest-xdist
+  - pip
+  - pip:
+
+    # pip install from github
+    # - git+https://github.com/guidorice/mojo-pytest.git
+
+    # or pip install from filesystem (editable package), uses pyproject.toml
+    - -e .
