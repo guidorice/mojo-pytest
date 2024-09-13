@@ -17,7 +17,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
 2. Install `mojo`, `python`, `pytest` and `pytest-mojo` plugin using the [conda](https://docs.anaconda.com/miniconda/)
  [environment.yml](environment.yml) file. This can alternatively be done with the [magic](https://docs.modular.com/magic/)
- package manager, but `conda` is easier for this use case.
+ package manager, but [conda](https://docs.anaconda.com/miniconda/) is easier for this use case.
 
     ```shell
     # use conda to install mojo, python, and the pytest-mojo plugin.
@@ -36,8 +36,8 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     pytest-xdist              3.6.1              pyhd8ed1ab_0    conda-forge
     ```
 
-    Summary: it is a requirement is to have a `python` and `mojo` sharing the same runtime and packages and `conda` is the
-    easiest way to accomplish that.
+    Summary: it is a requirement is to have a `python` and `mojo` sharing the same runtime and packages and
+    [conda](https://docs.anaconda.com/miniconda/) is the easiest way to accomplish that.
 
 3. Create some tests. See the example project for one possible filesystem layout:
     - `example_src/` has it's tests in the `example_tests/` folder.
