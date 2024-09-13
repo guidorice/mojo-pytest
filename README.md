@@ -71,7 +71,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     ================================ 6 passed in 13.55s =================================
     ```
 
-    👆🏽 Notice how your Python tests are run alongside your mojo tests.
+    👆🏽 Notice how your Python tests are run alongside your Mojo tests.
 
 5. Mojo binary packages are also supported with `--mojo-include`. For example, this could be used in a CI/CD script:
 
