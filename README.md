@@ -15,20 +15,23 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
 1. Create your Mojo tests according to the manual: https://docs.modular.com/mojo/tools/testing .
 
-2. Install `mojo`, `python`, `pytest` and `pytest-mojo` plugin using the [conda](https://docs.anaconda.com/miniconda/)
+2. Install Mojo, Python, `pytest` and this `pytest-mojo` plugin using the [conda](https://docs.anaconda.com/miniconda/)
  [environment.yml](environment.yml) file. This can alternatively be done with the [magic](https://docs.modular.com/magic/)
  package manager, but [conda](https://docs.anaconda.com/miniconda/) is easier for this use case.
 
     ```shell
     # use conda to install mojo, python, and the pytest-mojo plugin.
-    $ conda env -n foo-project create -f environment.yml
+    $ conda env create -n foo-project -f environment.yml 
 
     # verify environment
     $ conda activate foo-project
+
     $ mojo --version
     mojo 24.5.0 (e8aacb95)
+
     $ python --version
     Python 3.12.6
+
     $ conda list pytest
     ...
     pytest                    8.3.3              pyhd8ed1ab_0    conda-forge
@@ -36,7 +39,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     pytest-xdist              3.6.1              pyhd8ed1ab_0    conda-forge
     ```
 
-    Summary: it is a requirement is to have a `python` and `mojo` sharing the same runtime and packages and
+    Summary: it is a requirement is to have Python and Mojo sharing the same runtime and packages and
     [conda](https://docs.anaconda.com/miniconda/) is the easiest way to accomplish that.
 
 3. See the example project for one possible filesystem layout:
@@ -110,9 +113,9 @@ example_tests
 
 ## Links
 
-- If you experience slowness, see this [tip about using multiprocessing]( https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip)
-with pytest.
+- If you experience slowness, see this
+    [tip about using multiprocessing]( https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip) with `pytest`.
 - Writing tests in Mojo: https://docs.modular.com/mojo/tools/testing
-- Non-Python tests in `pytest`:  https://pytest.org/en/7.4.x/example/nonpython.html#non-python-tests
-- C test runner: https://pytest-c-testrunner.readthedocs.io/
-- Pytest docs: https://docs.pytest.org
+- Non-Python tests in `pytest`:  https://pytest.org/en/latest/example/nonpython.html#non-python-tests
+- C test runner: https://pytest-c-testrunner.readthedocs.io
+- `pytest` docs: https://docs.pytest.org
