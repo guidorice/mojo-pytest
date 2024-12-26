@@ -6,7 +6,7 @@ channels:
 dependencies:
   - python>=3.10
   # modular MAX installs mojo as well
-  - max=24.5
+  - max=24.6
   - pytest>=7.4
   # python-xdist is optional: https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip
   - pytest-xdist
