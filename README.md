@@ -27,16 +27,16 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     $ conda activate foo-project
 
     $ mojo --version
-    mojo 24.5.0 (e8aacb95)
+    mojo 24.6.0 (4487cd6e)
 
     $ python --version
-    Python 3.12.6
+    Python 3.12.8
 
     $ conda list pytest
     ...
-    pytest                    8.3.3              pyhd8ed1ab_0    conda-forge
-    pytest-mojo               24.5                     pypi_0    pypi
-    pytest-xdist              3.6.1              pyhd8ed1ab_0    conda-forge
+    pytest                    8.3.4              pyhd8ed1ab_1    conda-forge
+    pytest-mojo               24.6                     pypi_0    pypi
+    pytest-xdist              3.6.1              pyhd8ed1ab_1    conda-forge
     ```
 
     Summary: it is a requirement is to have Python and Mojo sharing the same runtime and packages and
@@ -55,23 +55,23 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     # so we must add it using PYTHONPATH. Please note that the full path may be required!
     $ export PYTHONPATH=/Users/you/project/example_src/
 
-    # Use the plugin's --mojo-include option to tell mojo where to find `my_package` 
+    # Use the plugin's --mojo-include option to tell mojo where to find `my_package`
     $ pytest --mojo-include example_src/ example_tests/
 
-    ================================ test session starts ================================
-    platform darwin -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0
-    rootdir: /Users/guidorice/mojo/mojo-pytest
+    ============================= test session starts ==============================
+    platform darwin -- Python 3.12.8, pytest-8.3.4, pluggy-1.5.0
+    rootdir: /Users/guidorice/dev/mojo/mojo-pytest
     configfile: pyproject.toml
-    plugins: mojo-24.5
-    collected 6 items                                                                   
+    plugins: mojo-24.6, anyio-4.7.0, xdist-3.6.1
+    collected 6 items                                                              
 
-    example_tests/my_package/my_test.mojo .                                       [ 16%]
-    example_tests/my_package/test_fibonacci.mojo ..                               [ 50%]
-    example_tests/my_package/test_fibonacci.py .                                  [ 66%]
-    example_tests/my_package/test_fire.🔥 .                                       [ 83%]
-    example_tests/my_package/test_random_tensor.mojo .                            [100%]
+    example_tests/my_package/my_test.mojo .                                  [ 16%]
+    example_tests/my_package/test_fibonacci.mojo ..                          [ 50%]
+    example_tests/my_package/test_fibonacci.py .                             [ 66%]
+    example_tests/my_package/test_fire.🔥 .                                  [ 83%]
+    example_tests/my_package/test_random_tensor.mojo .                       [100%]
 
-    ================================ 6 passed in 13.55s =================================
+    ============================== 6 passed in 18.19s ==============================
     ```
 
     👆🏽 Notice how your Python tests are run alongside your Mojo tests.
