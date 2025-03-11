@@ -2,7 +2,7 @@
 
 [![Run Tests](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml/badge.svg)](https://github.com/guidorice/mojo-pytest/actions/workflows/test.yml)
 
-[Mojo🔥](https://github.com/modularml/mojo) language test runner plugin for [pytest](https://docs.pytest.org). Try it for
+[Mojo🔥](https://docs.modular.com/mojo/manual) language test runner plugin for [pytest](https://docs.pytest.org). Try it for
 your mixed Python and Mojo codebases!
 
 ## Design
@@ -44,7 +44,7 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
 3. See the example project for one possible filesystem layout:
     - `example_src/` has it's tests in the `example_tests/` folder.
-    - Remember the [Mojo manual](https://docs.modular.com/mojo/tools/testing) explains
+    - Remember the [Mojo manual](https://docs.modular.com/mojo/manual) explains
     that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
     docstrings! So this example project is just one possibility.
 4. Mojo tests and Python tests are all run via `pytest`! Use the plugin's `--mojo-include` option to include your
