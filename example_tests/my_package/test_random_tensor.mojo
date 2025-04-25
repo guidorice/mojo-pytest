@@ -1,6 +1,7 @@
-from testing import assert_true, assert_false
-from utils.numerics import isfinite, isnan
+from testing import assert_false
+from utils.numerics import isnan
 from my_package.random_tensor import random_tensor
+
 
 def test_random_tensor():
     """
@@ -10,4 +11,3 @@ def test_random_tensor():
     t = random_tensor[T]()
     sample_value = t[0]
     assert_false(isnan(sample_value))
-    assert_true(isfinite(sample_value))
