@@ -1,10 +1,12 @@
-from python import Python
-from tensor import Tensor, TensorShape
+import random
+from tensor import Tensor
 
 
-fn random_tensor[T: DType]() raises -> Tensor[T]:
+fn random_tensor[dtype: DType]() -> Tensor[dtype]:
     """
-    Wraps Tensor.rand() and multiplies a few tensors.
+    Generate a random 100 x 1 tensor of the specified floating point type.
     """
-    Shape = TensorShape(100, 1)
-    return Tensor[T].rand(Shape) * Tensor[T].rand(Shape) * Tensor[T].rand(Shape)
+    constrained[dtype.is_floating_point(), "dtype must be floating point"]()
+    a = Tensor[dtype](100, 1)
+    random.rand(a.unsafe_ptr(), a.num_elements())
+    return a
