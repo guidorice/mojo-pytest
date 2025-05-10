@@ -27,14 +27,14 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     $ conda activate foo-project
 
     $ mojo --version
-    mojo 24.6.0 (4487cd6e)
+    mojo 25.3.0 (d430567f)
 
     $ python --version
-    Python 3.12.8
+    Python 3.13.3
 
     $ conda list pytest
     ...
-    pytest                    8.3.4              pyhd8ed1ab_1    conda-forge
+    pytest                    8.3.5              pyhd8ed1ab_0    conda-forge
     pytest-mojo               24.6                     pypi_0    pypi
     pytest-xdist              3.6.1              pyhd8ed1ab_1    conda-forge
     ```
@@ -44,9 +44,9 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
 
 3. See the example project for one possible filesystem layout:
     - `example_src/` has it's tests in the `example_tests/` folder.
-    - Remember the [Mojo manual](https://docs.modular.com/mojo/manual) explains
-    that tests are allowed to be in the same folder as Mojo code, or different folder, or even as Mojo code in
-    docstrings! So this example project is just one possibility.
+    - Remember the [Mojo manual](https://docs.modular.com/mojo/manual) explains that tests are allowed to be in the
+        same folder as Mojo code, or different folder, or even as Mojo code in docstrings! So this example project
+        is just one possibility.
 4. Mojo tests and Python tests are all run via `pytest`! Use the plugin's `--mojo-include` option to include your
    Mojo packages.
 
@@ -58,23 +58,24 @@ does not have any awareness of Mojo source or package structure, `pytest` is ext
     # Use the plugin's --mojo-include option to tell mojo where to find `my_package`
     $ pytest --mojo-include example_src/ example_tests/
 
-    ============================= test session starts ==============================
-    platform darwin -- Python 3.12.8, pytest-8.3.4, pluggy-1.5.0
+    ======================== test session starts =========================
+    platform darwin -- Python 3.13.3, pytest-8.3.5, pluggy-1.5.0
     rootdir: /Users/guidorice/dev/mojo/mojo-pytest
     configfile: pyproject.toml
-    plugins: mojo-24.6, anyio-4.7.0, xdist-3.6.1
-    collected 6 items                                                              
+    plugins: mojo-25.3, xdist-3.6.1
+    collected 6 items
 
-    example_tests/my_package/my_test.mojo .                                  [ 16%]
-    example_tests/my_package/test_fibonacci.mojo ..                          [ 50%]
-    example_tests/my_package/test_fibonacci.py .                             [ 66%]
-    example_tests/my_package/test_fire.🔥 .                                  [ 83%]
-    example_tests/my_package/test_random_tensor.mojo .                       [100%]
+    example_tests/my_package/my_test.mojo .                        [ 16%]
+    example_tests/my_package/test_fibonacci.mojo ..                [ 50%]
+    example_tests/my_package/test_fibonacci.py .                   [ 66%]
+    example_tests/my_package/test_fire.🔥 .                        [ 83%]
+    example_tests/my_package/test_random_tensor.mojo .             [100%]
 
-    ============================== 6 passed in 18.19s ==============================
+    ========================= 6 passed in 13.34s =========================
     ```
 
     👆🏽 Notice how your Python tests are run alongside your Mojo tests.
+    🚀 [Add `-n auto` for a multiprocessing speedup with pytest-xdist](https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip).
 
 5. Mojo binary packages are also supported with `--mojo-include`. For example, this could be used in a CI/CD script:
 

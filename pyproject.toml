@@ -1,6 +1,6 @@
 [project]
 name = "pytest-mojo"
-version = "v24.6"
+version = "v25.3"
 description = "Mojo🔥 language test runner plugin for pytest. (aka pytest-mojo)"
 authors = [{name = "Alex G Rice", email = "alex@ricegeo.dev"}]
 license = {file = "LICENSE"}
