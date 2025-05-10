@@ -4,9 +4,9 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python>=3.10
+  - python>=3.11
   # modular MAX installs mojo as well
-  - max=24.6
+  - max=25.3
   - pytest>=7.4
   # python-xdist is optional: https://github.com/guidorice/mojo-pytest/wiki#2024-07-17-here-is-a-performance-tip
   - pytest-xdist
